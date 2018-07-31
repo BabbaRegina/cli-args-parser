@@ -6,7 +6,7 @@ let goodInputs = [];
 
 for(let index in args){
     const arg = args[index];
-    const isKey =  arg.length > 2 && arg.substring(0,2) === '--';
+    const isKey =  arg.length > 2 && arg.substring(0,2) === '--' && arg.substring(0,3) != '---';
     if (isKey) {
         const keyLabel = arg.substring(2,arg.length).toString();
         let input = {};
@@ -19,4 +19,4 @@ for(let index in args){
         goodInputs.push(input);
     }
 }
-console.log('GOOD INPUTS', goodInputs);
+console.log('PARSED INPUTS', goodInputs);
