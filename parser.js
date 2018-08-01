@@ -1,9 +1,6 @@
 'use strict';
 
-const args = process.argv.slice(2);
-let parsedInputs = {};
-
-function updateKeyValue(keyLabel, keyValue) {
+function updateKeyValue(parsedInputs, keyLabel, keyValue) {
     const prevInput = parsedInputs[keyLabel];
     if(prevInput) {
         if (Array.isArray(prevInput)) {
@@ -25,7 +22,9 @@ function nextArgIsValue(next) {
     return next && next.length > 0 && next.substring(0, 1) != '-';
 }
 
-for(let index in args){
+const args = process.argv.slice(2);
+let parsedInputs = {};
+for (let index in args) {
     const arg = args[index];
     if (isFlag(arg)) {
         const keyLabel = arg.substring(2,arg.length).toString();
@@ -36,7 +35,7 @@ for(let index in args){
                 newValue = +nextValue? +nextValue : nextValue;
             }
         }
-        updateKeyValue(keyLabel, newValue);
+        updateKeyValue(parsedInputs, keyLabel, newValue);
     }
 }
 console.log('PARSED INPUTS', parsedInputs);
