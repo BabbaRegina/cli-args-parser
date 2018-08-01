@@ -24,7 +24,7 @@ for(let index in inputs){
     const keyLabel = pair[0].substring(2,pair[0].length).toString();
     let newValue = true;
     if (pair.length>1) {
-        newValue = pair[1];
+        newValue = +pair[1]? +pair[1] : pair[1];
     }
     updateKeyValue(keyLabel, newValue);
 }
