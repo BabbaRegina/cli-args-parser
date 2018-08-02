@@ -1,5 +1,5 @@
 # cli-args-parser
-===
+
 ## Instructions
 ### 1. To parse string like arguments
   the input should be like: `"--foo bar"`
@@ -11,7 +11,6 @@
  
      node parserArray [--foo, bar]
   
-===
  ### Test
    To test more complex inputs you could run
  
