@@ -1,0 +1,20 @@
+{
+  "name": "cli-args-parser",
+  "version": "1.0.0",
+  "description": "cli argument parser",
+  "main": "",
+  "scripts": {
+    "parse-string": "node parser --foo --bar baz --bar zab --number 1",
+    "parse-array": "node parserArray [--foo] [--bar, baz] [--bar, zab] [--number, 1]"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BabbaRegina/cli-args-parser.git"
+  },
+  "author": "Irene Nicolini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BabbaRegina/cli-args-parser/issues"
+  },
+  "homepage": "https://github.com/BabbaRegina/cli-args-parser#readme"
+}
