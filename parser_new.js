@@ -1,5 +1,7 @@
 
-function updateKeyValue(parsedInputs, keyLabel, keyValue) {
+const isFlag = (arg) => arg.substring(0, 2) === '--';
+const nextArgIsValue = (next) => next && next.length > 0 && next.substring(0, 1) != '-';
+const updateKeyValue = (parsedInputs, keyLabel, keyValue) => {
     const prevInput = parsedInputs[keyLabel];
     if(prevInput) {
         if (Array.isArray(prevInput)) {
@@ -11,15 +13,7 @@ function updateKeyValue(parsedInputs, keyLabel, keyValue) {
     } else {
         parsedInputs[keyLabel] = keyValue;
     }
-}
-
-function isFlag(arg) {
-    return arg.length > 2 && arg.substring(0, 2) === '--' && arg.substring(0, 3) != '---';
-}
-
-function nextArgIsValue(next) {
-    return next && next.length > 0 && next.substring(0, 1) != '-';
-}
+};
 
 module.exports = function cliParser (args) {
     if (!Array.isArray(args)) {
@@ -41,4 +35,4 @@ module.exports = function cliParser (args) {
         }
     }
     return parsedInputs;
-}
+};
