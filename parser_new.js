@@ -1,18 +1,18 @@
 
-const isFlag = (arg) => arg.substring(0, 2) === '--';
-const nextArgIsValue = (next) => next && next.length > 0 && next.substring(0, 1) != '-';
-const updateKeyValue = (parsedInputs, keyLabel, keyValue) => {
-    const prevInput = parsedInputs[keyLabel];
-    if(prevInput) {
-        if (Array.isArray(prevInput)) {
-            prevInput.push(keyValue);
-            parsedInputs[keyLabel] = prevInput;
+const isKey = (arg) => arg.substring(0, 2) === '--';
+
+const updateKeyValue = (parsedArgs, label, value) => {
+    const prevArg = parsedArgs[label];
+    let updatedArg = value;
+    if(prevArg) {
+        if (Array.isArray(prevArg)) {
+            prevArg.push(value);
+            updatedArg = prevArg;
         } else {
-            parsedInputs[keyLabel] = [prevInput, keyValue];
+            updatedArg = [prevArg, value];
         }
-    } else {
-        parsedInputs[keyLabel] = keyValue;
     }
+    parsedArgs[label] = updatedArg;
 };
 
 module.exports = function cliParser (args) {
@@ -22,14 +22,12 @@ module.exports = function cliParser (args) {
     let parsedInputs = {};
     for (let index in args) {
         const arg = args[index];
-        if (isFlag(arg)) {
-            const keyLabel = arg.substring(2,arg.length).toString();
+        if (isKey(arg)) {
+            const keyLabel = arg.substring(2,arg.length);
             let newValue = true;
-            if (index < args.length) {
-                const nextValue = args[++index];
-                if (nextArgIsValue(nextValue)) {
-                    newValue = +nextValue? +nextValue : nextValue;
-                }
+            const next = args[++index];
+            if (next && !isKey(next)) {
+                newValue = +next? +next : next;
             }
             updateKeyValue(parsedInputs, keyLabel, newValue);
         }
