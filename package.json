@@ -4,8 +4,7 @@
   "description": "cli argument parser",
   "main": "",
   "scripts": {
-    "parse-string": "node parser --foo --bar baz --bar zab --number 1",
-    "parse-array": "node parserArray [--foo] [--bar, baz] [--bar, zab] [--number, 1]"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BabbaRegina/cli-args-parser/issues"
   },
-  "homepage": "https://github.com/BabbaRegina/cli-args-parser#readme"
+  "homepage": "https://github.com/BabbaRegina/cli-args-parser#readme",
+  "dependencies": {
+    "mocha": "^5.2.0"
+  }
 }
