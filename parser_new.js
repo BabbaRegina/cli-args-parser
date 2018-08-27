@@ -2,15 +2,10 @@
 const isKey = (arg) => arg.substring(0, 2) === '--';
 
 const updateKeyValue = (parsedArgs, label, value) => {
-    const prevArg = parsedArgs[label];
     let updatedArg = value;
-    if(prevArg) {
-        if (Array.isArray(prevArg)) {
-            prevArg.push(value);
-            updatedArg = prevArg;
-        } else {
-            updatedArg = [prevArg, value];
-        }
+    if(parsedArgs.hasOwnProperty(label)) {
+        let prevArg = parsedArgs[label];
+        updatedArg = Array.isArray(prevArg) ? prevArg.push(value) : [prevArg, value];
     }
     parsedArgs[label] = updatedArg;
 };
